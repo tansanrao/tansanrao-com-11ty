@@ -98,7 +98,7 @@ document.head.appendChild(style);
       {% set posts = collections.posts %}
       {% set featuredPosts = posts | reverse | slice(0, 3) %}
       {% for post in featuredPosts %}
-      <article class="post-card{% if loop.index == 3 %} desktop-only{% endif %}">
+      <a href="{{ post.url }}" class="post-card{% if loop.index == 3 %} desktop-only{% endif %}">
         {% if post.data.featuredImage %}
         <div class="card-image">
           <img src="{{ post.data.featuredImage }}" alt="{{ post.data.title }}">
@@ -111,9 +111,7 @@ document.head.appendChild(style);
         </div>
         {% endif %}
         <div class="flow" style="--flow-space: var(--space-xs)">
-          <h2>
-            <a href="{{ post.url }}">{{ post.data.title }}</a>
-          </h2>
+          <h2>{{ post.data.title }}</h2>
           {% if post.data.description %}
           <p class="description">{{ post.data.description }}</p>
           {% endif %}
@@ -123,7 +121,7 @@ document.head.appendChild(style);
             </time>
           </div>
         </div>
-      </article>
+      </a>
       {% endfor %}
     </div>
   </section>
