@@ -31,7 +31,7 @@ rf.fit(X, y)
 Feature importance can be visualized as follows:
 
 <figure>
-  <img src="/assets/images/feature-importance.png" alt="Bar chart showing feature importance scores">
+  <img src="/assets/images/blog/feature-importance.png" alt="Bar chart showing feature importance scores">
   <figcaption>Feature importance scores from a random forest model, showing the relative contribution of each feature to the model's predictions.</figcaption>
 </figure>
 
@@ -53,7 +53,7 @@ Where:
 LIME (Local Interpretable Model-agnostic Explanations) provides local explanations for individual predictions{% cite "ribeiro2016lime" %}. The key insight behind LIME is that while a model might be globally complex, it can be approximated locally with a simpler model.
 
 <figure>
-  <img src="/assets/images/lime-explanation.png" alt="LIME explanation for an image classification">
+  <img src="/assets/images/blog/lime-explanation.png" alt="LIME explanation for an image classification">
   <figcaption>LIME explanation highlighting regions that contributed to the model's classification decision.</figcaption>
 </figure>
 

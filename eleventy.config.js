@@ -7,6 +7,7 @@ const { DateTime } = require("luxon");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const sass = require("sass");
 const path = require("path");
+const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
 
 module.exports = function(eleventyConfig) {
   /**
@@ -37,6 +38,27 @@ module.exports = function(eleventyConfig) {
     return `<a href="#ref-${key}" class="citation">[${key}]</a>`;
   });
 
+  /**
+   * Image Configuration
+   * -----------------
+   * Configuration for image processing and transformation
+   */
+	eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+		// output image formats
+		formats: ["avif", "webp", "jpeg"],
+
+		// output image widths
+		widths: ["auto"],
+
+		// optional, attributes assigned on <img> nodes override these values
+		htmlOptions: {
+			imgAttributes: {
+				loading: "lazy",
+				decoding: "async",
+			},
+			pictureAttributes: {}
+		},
+	});
   /**
    * RSS Feed Configuration
    * --------------------
@@ -233,14 +255,12 @@ module.exports = function(eleventyConfig) {
    * Configuration for static assets and third-party resources
    */
   eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy({ "src/favicon": "/" });
   eleventyConfig.addPassthroughCopy({ "node_modules/@fontsource": "scss/@fontsource" });
-  eleventyConfig.addPassthroughCopy({
-    'node_modules/@fortawesome/fontawesome-free/css': 'scss/@fortawesome/fontawesome-free/css',
-    'node_modules/@fortawesome/fontawesome-free/webfonts': 'scss/@fortawesome/fontawesome-free/webfonts'
-  });
+  eleventyConfig.addPassthroughCopy({ "node_modules/@fortawesome": "scss/@fortawesome" });
+
+
+
 
   /**
    * Markdown Configuration

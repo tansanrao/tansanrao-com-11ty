@@ -182,6 +182,48 @@ python scripts/generate_ml_visuals.py
 
 This script generates visualizations for machine learning-related blog posts. It requires Python 3.x and the dependencies listed in `scripts/requirements.txt`.
 
+## Image Usage
+
+This site uses a responsive image pipeline that automatically generates multiple sizes and formats of images for optimal performance.
+
+### Directory Structure
+
+```
+src/
+  assets/
+    images/
+      blog/     # Blog post images
+      notes/    # Notes images
+      global/   # Site-wide images (logos, icons, etc.)
+```
+
+### Using Images in Templates
+
+You can use images in your templates using either the `picture` or `image` shortcode:
+
+```njk
+{% picture "assets/images/blog/my-image.jpg", "Alt text for my image" %}
+```
+
+Or with custom sizes:
+
+```njk
+{% picture "assets/images/blog/my-image.jpg", "Alt text for my image", "(min-width: 1024px) 960px, 100vw" %}
+```
+
+### Features
+
+- Automatically generates multiple sizes (320w, 640w, 960w, 1280w)
+- Converts images to modern formats (AVIF, WebP) with JPEG fallback
+- Lazy loading enabled by default
+- Responsive images with appropriate `srcset` and `sizes`
+- Caches processed images for faster builds
+
+### Supported Image Formats
+
+Input formats: JPG, PNG, WebP, AVIF, GIF
+Output formats: AVIF, WebP, JPEG (as fallbacks)
+
 ## License
 
 MIT
