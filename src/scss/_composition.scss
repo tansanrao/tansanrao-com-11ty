@@ -1,0 +1,44 @@
+/* Composition Layer
+ * Focus on layout and spacing relationships
+ */
+
+.flow > * + * {
+  margin-top: var(--flow-space, var(--space-m));
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cluster-gap, var(--space-s));
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  gap: var(--grid-gap, var(--space-m));
+}
+
+.auto-grid {
+  --min-column-size: 16rem;
+  
+  display: grid;
+  gap: var(--grid-gap, var(--space-m));
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--min-column-size), 100%), 1fr));
+}
+
+.container {
+  width: 100%;
+  max-width: var(--size-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-m);
+  padding-right: var(--space-m);
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+} 

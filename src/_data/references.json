@@ -1,0 +1,27 @@
+{
+  "molnar2020interpretable": {
+    "author": "Molnar, Christoph",
+    "year": 2020,
+    "title": "Interpretable Machine Learning",
+    "publisher": "Lulu",
+    "url": "https://christophm.github.io/interpretable-ml-book/"
+  },
+  "ribeiro2016lime": {
+    "author": "Ribeiro, Marco Tulio and Singh, Sameer and Guestrin, Carlos",
+    "year": 2016,
+    "title": "\"Why Should I Trust You?\": Explaining the Predictions of Any Classifier",
+    "conference": "Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining",
+    "pages": "1135-1144",
+    "doi": "10.1145/2939672.2939778"
+  },
+  "rudin2019stop": {
+    "author": "Rudin, Cynthia",
+    "year": 2019,
+    "title": "Stop Explaining Black Box Machine Learning Models for High Stakes Decisions and Use Interpretable Models Instead",
+    "journal": "Nature Machine Intelligence",
+    "volume": 1,
+    "number": 5,
+    "pages": "206-215",
+    "doi": "10.1038/s42256-019-0048-x"
+  }
+} 

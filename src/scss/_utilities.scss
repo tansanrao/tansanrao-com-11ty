@@ -1,0 +1,51 @@
+/* Utilities Layer
+ * Single-purpose utility classes
+ */
+
+// Display
+.hidden {
+  display: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Text alignment
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+// Font weights
+.weight-regular { font-weight: 400; }
+.weight-medium { font-weight: 500; }
+.weight-bold { font-weight: 700; }
+
+// Spacing utilities
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.ml-auto { margin-left: auto; }
+.mr-auto { margin-right: auto; }
+
+// Width utilities
+.w-full { width: 100%; }
+.w-auto { width: auto; }
+
+// Colors
+.text-primary { color: var(--color-primary); }
+.bg-surface { background-color: var(--color-surface); }
+
+// Responsive utilities
+@media (min-width: 40em) {
+  .md\:hidden { display: none; }
+  .md\:block { display: block; }
+  .md\:flex { display: flex; }
+} 

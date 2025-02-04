@@ -1,0 +1,93 @@
+---
+layout: base.njk
+title: Blog
+eleventyNavigation:
+  key: Blog
+  order: 2
+---
+
+<div class="container flow" style="--flow-space: var(--space-2xl)">
+  <header class="blog-hero center flow" style="--flow-space: var(--space-s)">
+    <h1 class="text-balance">Perspectives in Progress</h1>
+    <p class="text-balance text-muted" style="max-width: 50ch">Expository musings on science, technology, and life.</p>
+  </header>
+
+  <section class="featured-posts flow">
+    <div class="auto-grid">
+      {% set posts = collections.posts %}
+      {% set featuredPosts = posts | reverse | slice(0, 3) %}
+      {% for post in featuredPosts %}
+      <article class="post-card{% if loop.index == 3 %} desktop-only{% endif %}">
+        {% if post.data.featuredImage %}
+        <div class="card-image">
+          <img src="{{ post.data.featuredImage }}" alt="{{ post.data.title }}">
+        </div>
+        {% else %}
+        <div class="card-image card-image-pattern">
+          <div class="pattern-content">
+            <h3>{{ post.data.title }}</h3>
+          </div>
+        </div>
+        {% endif %}
+        <div class="flow" style="--flow-space: var(--space-xs)">
+          <h2>
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+          </h2>
+          {% if post.data.description %}
+          <p class="description">{{ post.data.description }}</p>
+          {% endif %}
+          <div class="post-meta cluster">
+            <time datetime="{{ post.date | htmlDateString }}">
+              Published on {{ post.date | readableDate }}
+            </time>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <div class="blog-layout grid">
+    <aside class="blog-sidebar">
+      <div class="filter-section">
+        <label class="filter-label">Filter Posts</label>
+        <button class="filter-toggle" aria-expanded="false" aria-controls="categories-nav">
+          <span class="filter-toggle-text">All Posts</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </button>
+        <nav id="categories-nav" class="categories-nav">
+          <ul class="flow" style="--flow-space: var(--space-xs)">
+            <li class="active"><a href="#" data-filter="all">All Posts</a></li>
+            {% set postslist = collections.posts %}
+            {% set years = [] %}
+            {% for post in postslist | reverse %}
+              {% set postYear = post.date | htmlDateString | slice(0,4) %}
+              {% if postYear not in years %}
+                {% set years = (years.push(postYear), years) %}
+                <li><a href="#" data-filter="{{ postYear }}">{{ postYear }}</a></li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="blog-content">
+      <section class="all-posts">
+        <h2 id="posts-heading">All Posts</h2>
+        
+        <div class="posts-list flow" style="--flow-space: var(--space-m)">
+          {% for post in posts | reverse %}
+          {% set postYear = post.date | htmlDateString | slice(0,4) %}
+          <article class="post-item" data-year="{{ postYear }}">
+            {% set postslist = [post] %}
+            {% include "blog-list.njk" %}
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+    </main>
+  </div>
+</div> 

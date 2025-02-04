@@ -1,0 +1,12 @@
+---
+layout: base.njk
+title: News
+eleventyNavigation:
+  key: News
+  order: 3
+---
+
+<h1>{{ title }}</h1>
+
+{% set newsItems = collections.news | reverse %}
+{% include "news-list.njk" %} 

@@ -1,0 +1,27 @@
+---
+layout: base.njk
+---
+
+<article class="note h-entry">
+  <div class="note__content e-content">
+    {{ content | safe }}
+  </div>
+  
+  {% if date %}
+  <footer class="note__meta">
+    <time class="dt-published" datetime="{{ date | dateToISO }}">
+      {{ date | dateToReadable }}
+    </time>
+  </footer>
+  {% endif %}
+  
+  {% if tags %}
+  <div class="note__tags">
+    {% for tag in tags %}
+      {% if tag != "notes" %}
+      <a href="/tags/{{ tag | slugify }}" class="tag p-category">#{{ tag }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</article> 

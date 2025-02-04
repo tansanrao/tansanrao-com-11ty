@@ -1,0 +1,119 @@
+// Design token maps for programmatic access
+$tokens: (
+  'colors': (
+    'primary': var(--color-primary),
+    'text': var(--color-text),
+    'background': var(--color-background),
+    'background-primary': var(--color-background-primary),
+    'background-secondary': var(--color-background-secondary),
+    'background-grid': var(--color-background-grid),
+    'surface': var(--color-surface)
+  ),
+  'space': (
+    'xs': var(--space-xs),
+    's': var(--space-s),
+    'm': var(--space-m),
+    'l': var(--space-l),
+    'xl': var(--space-xl),
+    '2xl': var(--space-2xl)
+  ),
+  'size': (
+    'content': var(--size-content)
+  )
+);
+
+:root {
+  // Font families
+  --font-base: 'Literata', Georgia, serif;
+  --font-heading: 'Red Hat Display', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SF Mono', Monaco, Consolas, monospace;
+  
+  // Light mode colors
+  --color-primary: #2563eb;
+  --color-text: #1f2937;
+  --color-text-secondary: #4b5563;
+  --color-background: #faf9f6;  // Off-white background
+  --color-surface: #f3f4f6;
+  --color-surface-2: rgba(0, 0, 0, 0.03);
+  --color-link: #0891b2;  // Cyan 600
+  --color-link-hover: #0e7490;  // Cyan 700
+  
+  // Background pattern colors
+  --color-background-primary: #f8f7f4;
+  --color-background-secondary: #f5f4f1;
+  --color-background-grid: rgba(37, 99, 235, 0.15);  // Deep blue grid lines with transparency
+  --color-gradient-start: rgba(255, 255, 255, 0.95);
+  --color-gradient-end: rgba(37, 99, 235, 0.05);  // Very subtle blue tint at the end
+  
+  // Spacing
+  --space-xs: 0.25rem;
+  --space-s: 0.5rem;
+  --space-m: 1rem;
+  --space-l: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 4rem;
+  
+  // Sizes
+  --size-content: 134ch;
+  
+  // Grid pattern
+  --grid-size: 40px;
+  --grid-strength: 1px;
+
+  // Dark mode colors
+  &[data-theme="dark"] {
+    --color-primary: #60a5fa;
+    --color-text: #f3f4f6;
+    --color-text-secondary: #9ca3af;
+    --color-background: #111827;
+    --color-surface: #1f2937;
+    --color-surface-2: rgba(255, 255, 255, 0.03);
+    --color-link: #22d3ee;  // Cyan 400
+    --color-link-hover: #06b6d4;  // Cyan 500
+    --color-background-primary: #1a1f2e;
+    --color-background-secondary: #151923;
+    --color-background-grid: rgba(96, 165, 250, 0.15);
+    --color-gradient-start: rgba(17, 24, 39, 0.95);
+    --color-gradient-end: rgba(96, 165, 250, 0.03);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-theme="light"]) {
+      --color-primary: #60a5fa;
+      --color-text: #f3f4f6;
+      --color-text-secondary: #9ca3af;
+      --color-background: #111827;
+      --color-surface: #1f2937;
+      --color-surface-2: rgba(255, 255, 255, 0.03);
+      --color-link: #22d3ee;  // Cyan 400
+      --color-link-hover: #06b6d4;  // Cyan 500
+      --color-background-primary: #1a1f2e;
+      --color-background-secondary: #151923;
+      --color-background-grid: rgba(96, 165, 250, 0.15);
+      --color-gradient-start: rgba(17, 24, 39, 0.95);
+      --color-gradient-end: rgba(96, 165, 250, 0.03);
+    }
+  }
+}
+
+// Mixins
+@mixin container {
+  width: 100%;
+  max-width: var(--size-content);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-m);
+  padding-right: var(--space-m);
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+} 

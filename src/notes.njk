@@ -1,0 +1,44 @@
+---
+layout: base.njk
+title: Notes
+description: Notes are my shorter posts; kinda like my own little microblog. They have their own RSS feed and are automatically syndicated to my social profiles.
+eleventyNavigation:
+  key: Notes
+  order: 3
+---
+
+<header class="notes-header">
+  <h1>{{ title }}</h1>
+  <p class="notes-description">{{ description }}</p>
+</header>
+
+<div class="notes-grid">
+  {% for note in collections.notes | reverse %}
+    <article class="note h-entry">
+      <header class="note__header">
+        <time class="dt-published" datetime="{{ note.date | dateToISO }}">
+          {{ note.date | dateToReadable }}
+        </time>
+        {% if note.data.title %}
+          <h2 class="note__title p-name">{{ note.data.title }}</h2>
+        {% endif %}
+      </header>
+
+      <div class="note__content e-content">
+        {{ note.templateContent | safe }}
+      </div>
+      
+      {% if note.data.tags %}
+      <footer class="note__meta">
+        <div class="note__tags">
+          {% for tag in note.data.tags %}
+            {% if tag != "notes" %}
+            <a href="/tags/{{ tag | slugify }}" class="tag p-category">#{{ tag }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </footer>
+      {% endif %}
+    </article>
+  {% endfor %}
+</div>

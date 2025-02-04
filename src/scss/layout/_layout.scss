@@ -1,0 +1,71 @@
+@use '../tokens' as *;
+@use 'sass:map';
+
+body {
+  background-color: var(--color-background);
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-background {
+  position: relative;
+  flex: 1;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: 
+      linear-gradient(to right, var(--color-background-grid) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-background-grid) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    opacity: 0.1;
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+// Main layout styles
+header, main {
+  padding: var(--space-xl) var(--space-m);
+  position: relative;
+  z-index: 1;
+}
+
+.site-footer {
+  padding: var(--space-xl) var(--space-m);
+  background-color: var(--color-background);
+  position: relative;
+  z-index: 2;
+}
+
+main {
+  max-width: var(--size-content);
+  margin: 0 auto;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--size-content);
+  margin: 0 auto;
+  padding: 0 var(--space-m);
+}
+
+// Grid system
+.grid {
+  display: grid;
+  gap: var(--space-m);
+  
+  &--2-col {
+    grid-template-columns: repeat(2, 1fr);
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+} 

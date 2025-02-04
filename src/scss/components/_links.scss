@@ -1,0 +1,20 @@
+a {
+    color: var(--color-link);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    
+    &:hover {
+        color: var(--color-link-hover);
+        text-decoration: underline;
+    }
+}
+
+// Ensure links within paragraphs and news content follow the same style
+p a,
+.news-content a {
+    color: var(--color-link);
+    
+    &:hover {
+        color: var(--color-link-hover);
+    }
+} 

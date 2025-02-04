@@ -1,0 +1,16 @@
+{% if newsItems.length %}
+<div class="news-list">
+    {% for item in newsItems %}
+    <article class="news-item grid grid--2-col outlined-container">
+        <div class="date-container">
+            <time datetime="{{ item.date | htmlDateString }}" class="news-date">
+                {{ item.date | readableDate }}
+            </time>
+        </div>
+        <div class="news-content">
+            {{ item.templateContent | safe }}
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% endif %} 

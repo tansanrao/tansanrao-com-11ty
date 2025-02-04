@@ -1,0 +1,40 @@
+{
+  "title": "Tanuj Ravi Rao",
+  "url": "https://tansanrao.com",
+  "language": "en",
+  "description": "",
+  "feeds": {
+    "main": {
+      "title": "All Content",
+      "subtitle": "Latest blog posts and notes from Tanuj Ravi Rao",
+      "path": "/feed.xml",
+      "url": "https://tansanrao.com/feed.xml"
+    },
+    "articles": {
+      "title": "Blog Posts",
+      "subtitle": "Latest blog posts from Tanuj Ravi Rao",
+      "path": "/articles.xml",
+      "url": "https://tansanrao.com/articles.xml"
+    },
+    "notes": {
+      "title": "Notes",
+      "subtitle": "Latest notes and thoughts from Tanuj Ravi Rao",
+      "path": "/notes.xml",
+      "url": "https://tansanrao.com/notes.xml"
+    }
+  },
+  "jsonfeed": {
+    "path": "/feed.json",
+    "url": "https://tansanrao.com/feed.json"
+  },
+  "author": {
+    "name": "Tanuj Ravi Rao",
+    "email": "tanujrao99@gmail.com",
+    "url": "https://tansanrao.com/about/"
+  },
+  "social": {
+    "github": "https://github.com/tansanrao",
+    "linkedin": "https://www.linkedin.com/in/tansanrao",
+    "orcid": "https://orcid.org/0000-0000-0000-0000"
+  }
+} 

@@ -1,0 +1,30 @@
+{% if bibliography %}
+  <div class="bibliography-entries">
+    {% for key, ref in references %}
+      <div class="citation" id="ref-{{ key }}">
+        {{ ref.author }} ({{ ref.year }}).
+        {% if ref.title %}
+          "{{ ref.title }}."
+        {% endif %}
+        {% if ref.journal %}
+          <em>{{ ref.journal }}</em>
+          {% if ref.volume %}{{ ref.volume }}{% endif %}
+          {% if ref.number %}({{ ref.number }}){% endif %}
+          {% if ref.pages %}: {{ ref.pages }}{% endif %}.
+        {% endif %}
+        {% if ref.conference %}
+          In <em>{{ ref.conference }}</em>{% if ref.pages %}, pp. {{ ref.pages }}{% endif %}.
+        {% endif %}
+        {% if ref.publisher %}
+          {{ ref.publisher }}.
+        {% endif %}
+        {% if ref.doi %}
+          <a href="https://doi.org/{{ ref.doi }}" target="_blank" rel="noopener">https://doi.org/{{ ref.doi }}</a>
+        {% endif %}
+        {% if ref.url %}
+          <a href="{{ ref.url }}" target="_blank" rel="noopener">{{ ref.url }}</a>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %} 

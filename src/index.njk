@@ -1,0 +1,51 @@
+---
+layout: base.njk
+title: Home
+eleventyNavigation:
+  key: Home
+  order: 1
+---
+
+
+
+<section class="intro-section grid grid--2-col">
+
+    <div class="intro-text">
+        <h1>{{ metadata.title }}</h1>
+        {% if metadata.description %}
+        <p class="subtitle">{{ metadata.description }}</p>
+        {% endif %}
+        
+        <p>I'm a third-year Ph.D. student in the Distributed Systems & Storage Laboratory (DSSL) and Rethinking OS Abstractions Laboratory (ROSALab) groups at the Department of Computer Science, Virgina Tech.</p>
+        <p>I'm an engineer turned researcher with a passion for the practical, real-world side of systems research. My interests include all things operating systems, distributed systems, and networking. Right now, I'm focused on improving dataplane performance through kernel extensions.</p>
+    </div>
+    <div class="intro-contact">
+        <div class="profile-image">
+            <img src="/assets/img/profile.jpg" alt="Profile picture" width="300" height="300" style="aspect-ratio: 1; object-fit: cover; border-radius: 8px;">
+        </div>
+        <pre class="address"><code>Department of Computer Science
+Virginia Tech
+2202 Kraft Drive
+Blacksburg, VA 24060</code></pre>
+    </div>
+</section>
+
+<section class="latest-news">
+    <h2>Latest News</h2>
+    {% set newsItems = collections.news | reverse | slice(0, 3) %}
+    {% include "news-list.njk" %}
+    
+    <p class="all-news-link">
+        <a href="/news">View all news →</a>
+    </p>
+</section>
+
+<section class="latest-posts">
+    <h2>Latest Posts</h2>
+    {% set postslist = collections.posts | reverse | slice(0, 3) %}
+    {% include "blog-list.njk" %}
+    
+    <p class="all-posts-link">
+        <a href="/blog">View all posts →</a>
+    </p>
+</section>

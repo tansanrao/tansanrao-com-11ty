@@ -1,0 +1,47 @@
+@use '../tokens' as *;
+@use 'textures' as *;
+
+.site-footer {
+  margin-top: var(--space-2xl);
+  padding: var(--space-xl) 0;
+  background-color: var(--color-background);
+  border-top: 1px solid var(--color-background-grid);
+  text-align: center;
+  @include texture-overlay;
+  
+  .social-links {
+    padding: 0 0 var(--space-l);
+    border-top: none;
+    margin-top: 0;
+
+    .social-link {
+      background-color: var(--color-surface-1);
+      color: var(--color-text);
+      text-decoration: none;
+      
+      &:hover {
+        background-color: var(--color-surface-2);
+        transform: translateY(-2px);
+        color: var(--color-primary);
+      }
+    }
+  }
+  
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    opacity: 0.8;
+  }
+  
+  p a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    
+    &:hover {
+      color: var(--color-primary);
+      text-decoration-thickness: 0.2em;
+    }
+  }
+}
