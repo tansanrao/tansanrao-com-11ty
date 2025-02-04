@@ -1,0 +1,70 @@
+// Import KaTeX CSS from node_modules
+@use '../../../node_modules/katex/dist/katex.css' as katex;
+
+// KaTeX styling overrides and customizations
+.katex {
+  font-size: 1.1em;
+  
+  // Adjust display math size
+  .katex-display {
+    padding: 1rem 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    
+    .katex {
+      font-size: 1.21em; // Slightly larger for display math
+    }
+  }
+  
+  // Ensure proper spacing around inline math
+  .katex-inline {
+    padding: 0 0.1em;
+  }
+  
+  // Custom dark mode support
+  [data-theme="dark"] & {
+    .katex-mathml {
+      color: var(--color-text);
+    }
+    
+    .mord, .mbin, .mrel, .mopen, .mclose, .mpunct, .minner {
+      color: var(--color-text);
+    }
+  }
+  
+  // Improve readability of fractions
+  .mfrac {
+    .frac-line {
+      border-color: var(--color-text);
+    }
+  }
+  
+  // Better spacing for subscripts and superscripts
+  .msupsub {
+    margin-right: 0.1em;
+  }
+}
+
+// Container styles for math blocks
+.math-block {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--color-background-alt);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  
+  // Scrollbar styling for overflow
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-text-muted);
+    border-radius: 4px;
+  }
+} 

@@ -3,6 +3,7 @@ const { feedPlugin } = require("@11ty/eleventy-plugin-rss");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItFootnote = require('markdown-it-footnote');
+const markdownItKatex = require('markdown-it-katex');
 const { DateTime } = require("luxon");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const sass = require("sass");
@@ -28,7 +29,8 @@ module.exports = function(eleventyConfig) {
       class: "direct-link"
     }
   })
-  .use(markdownItFootnote);
+  .use(markdownItFootnote)
+  .use(markdownItKatex);
 
   // Set as the default markdown library
   eleventyConfig.setLibrary("md", markdownLibrary);
@@ -335,6 +337,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/favicon": "/" });
   eleventyConfig.addPassthroughCopy({ "node_modules/@fontsource": "scss/@fontsource" });
   eleventyConfig.addPassthroughCopy({ "node_modules/@fortawesome": "scss/@fortawesome" });
+  eleventyConfig.addPassthroughCopy({ "node_modules/katex/dist/fonts": "assets/fonts/katex" });
 
   /**
    * Eleventy Configuration
