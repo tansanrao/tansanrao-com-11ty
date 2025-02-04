@@ -1,12 +1,18 @@
 ---
 layout: base.njk
 title: News
+description: The latest updates and announcements.
 eleventyNavigation:
   key: News
   order: 3
 ---
 
-<h1>{{ title }}</h1>
+<div class="container flow" style="--flow-space: var(--space-2xl)">
+  <header class="blog-hero center flow" style="--flow-space: var(--space-s)">
+    <h1 class="text-balance">{{ title }}</h1>
+    <p class="text-balance text-muted" style="max-width: 50ch">{{ description }}</p>
+  </header>
 
-{% set newsItems = collections.news | reverse %}
-{% include "news-list.njk" %} 
+  {% set newsItems = collections.news | reverse %}
+  {% include "news-list.njk" %}
+</div> 

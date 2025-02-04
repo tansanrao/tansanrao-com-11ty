@@ -7,38 +7,40 @@ eleventyNavigation:
   order: 3
 ---
 
-<header class="notes-header">
-  <h1>{{ title }}</h1>
-  <p class="notes-description">{{ description }}</p>
-</header>
+<div class="container flow" style="--flow-space: var(--space-2xl)">
+  <header class="blog-hero center flow" style="--flow-space: var(--space-s)">
+    <h1 class="text-balance">{{ title }}</h1>
+    <p class="text-balance text-muted" style="max-width: 50ch">{{ description }}</p>
+  </header>
 
-<div class="notes-grid">
-  {% for note in collections.notes | reverse %}
-    <article class="note h-entry">
-      <header class="note__header">
-        <time class="dt-published" datetime="{{ note.date | dateToISO }}">
-          {{ note.date | dateToReadable }}
-        </time>
-        {% if note.data.title %}
-          <h2 class="note__title p-name">{{ note.data.title }}</h2>
-        {% endif %}
-      </header>
+  <div class="notes-grid">
+    {% for note in collections.notes | reverse %}
+      <article class="note h-entry">
+        <header class="note__header">
+          <time class="dt-published" datetime="{{ note.date | dateToISO }}">
+            {{ note.date | dateToReadable }}
+          </time>
+          {% if note.data.title %}
+            <h2 class="note__title p-name">{{ note.data.title }}</h2>
+          {% endif %}
+        </header>
 
-      <div class="note__content e-content">
-        {{ note.templateContent | safe }}
-      </div>
-      
-      {% if note.data.tags %}
-      <footer class="note__meta">
-        <div class="note__tags">
-          {% for tag in note.data.tags %}
-            {% if tag != "notes" %}
-            <a href="/tags/{{ tag | slugify }}" class="tag p-category">#{{ tag }}</a>
-            {% endif %}
-          {% endfor %}
+        <div class="note__content e-content">
+          {{ note.templateContent | safe }}
         </div>
-      </footer>
-      {% endif %}
-    </article>
-  {% endfor %}
+        
+        {% if note.data.tags %}
+        <footer class="note__meta">
+          <div class="note__tags">
+            {% for tag in note.data.tags %}
+              {% if tag != "notes" %}
+              <a href="/tags/{{ tag | slugify }}" class="tag p-category">#{{ tag }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </footer>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
 </div>
