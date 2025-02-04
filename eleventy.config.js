@@ -152,6 +152,20 @@ module.exports = function(eleventyConfig) {
     return collection.getFilteredByGlob("src/news/*.md");
   });
 
+  // Filter function to remove specific tags from the tag list
+  eleventyConfig.addFilter("filterTagList", tags => {
+    return (tags || []).filter(tag => ["all", "nav", "post", "posts", "notes"].indexOf(tag) === -1);
+  });
+
+  // Create tag pages for each tag
+  eleventyConfig.addCollection("tagList", function(collection) {
+    let tagSet = new Set();
+    collection.getAll().forEach(item => {
+      (item.data.tags || []).forEach(tag => tagSet.add(tag));
+    });
+    return Array.from(tagSet).filter(tag => ["all", "nav", "post", "posts", "notes"].indexOf(tag) === -1);
+  });
+
   /**
    * Date Formatting Filters
    * --------------------
@@ -190,6 +204,23 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addFilter("limit", (array, limit) => {
     return array.slice(0, limit);
+  });
+
+  // Add markdown filter for rendering markdown content in templates
+  const md = new markdownIt({
+    html: true,
+    breaks: true,
+    linkify: true
+  })
+  .use(markdownItAnchor, {
+    permalink: true,
+    permalinkClass: 'direct-link',
+    permalinkSymbol: '#'
+  })
+  .use(markdownItFootnote);
+
+  eleventyConfig.addFilter("markdown", function(content) {
+    return md.render(content);
   });
 
   /**
@@ -258,9 +289,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/favicon": "/" });
   eleventyConfig.addPassthroughCopy({ "node_modules/@fontsource": "scss/@fontsource" });
   eleventyConfig.addPassthroughCopy({ "node_modules/@fortawesome": "scss/@fortawesome" });
-
-
-
 
   /**
    * Markdown Configuration

@@ -24,12 +24,14 @@
 @use 'components/links';
 @use 'components/code';
 @use 'components/blog';
+@use 'components/post';
 @use 'components/footer';
 @use 'components/textures';
 @use 'components/theme-toggle';
 @use 'components/news';
 @use 'components/social-links';
 @use 'components/notes';
+@use 'components/tags';
 
 /* Composition
  * How elements and blocks are composed

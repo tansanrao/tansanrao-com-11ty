@@ -1,72 +1,117 @@
 ---
 layout: base.njk
 ---
-<article class="post flow">
-    <header class="post-header">
-        <h1 class="post-title">{{ title }}</h1>
-        {% if description %}
-        <p class="post-description">{{ description }}</p>
-        {% endif %}
+<article class="post">
+    {# Hero Header Section #}
+    <header class="post-hero">
+        <div class="post-hero__content">
+            <h1 class="post-title">{{ title }}</h1>
+            {% if description %}
+            <p class="post-description">{{ description }}</p>
+            {% endif %}
+
+            <div class="post-meta">
+                {# Authors #}
+                <div class="post-authors">
+                    {% if authors %}
+                        {% for author in authors %}
+                            <span class="post-author">
+                                {%- if author.url -%}
+                                    <a href="{{ author.url }}">{{ author.name }}</a>
+                                {%- else -%}
+                                    {{ author.name }}
+                                {%- endif -%}
+                            </span>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <span class="post-author">
+                            <a href="{{ metadata.author.url }}">{{ metadata.author.name }}</a>
+                        </span>
+                    {% endif %}
+                </div>
+
+                {# Dates #}
+                <div class="post-dates">
+                    <time class="post-date" datetime="{{ page.date | htmlDateString }}">Published on {{ page.date | readableDate }}</time>{% if lastUpdated %}, <time class="post-date" datetime="{{ lastUpdated | htmlDateString }}">Last Updated on {{ lastUpdated | readableDate }}</time>{% endif %}
+                </div>
+
+                {# Tags #}
+                {% if tags %}
+                <div class="post-tags">
+                    {% for tag in tags %}
+                        {% if tag != "posts" %}
+                        <a href="/tags/{{ tag }}" class="tag">#{{ tag }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
     </header>
 
-    <div class="post-meta">
-        <div class="post-author">
-            <a href="{{ metadata.author.url }}">{{ metadata.author.name }}</a>
-        </div>
+    {# Two Column Layout #}
+    <div class="post-layout">
+        {# Left Column - Asides #}
+        <aside class="post-asides">
+            {% if toc %}
+            <nav class="post-toc" aria-label="Table of Contents">
+                <h2>Contents</h2>
+                {{ content | toc | safe }}
+            </nav>
+            {% endif %}
+        </aside>
 
-        <div class="post-date">
-            <time datetime="{{ page.date | htmlDateString }}">
-                {{ page.date | readableDate }}
-            </time>
-        </div>
+        {# Right Column - Main Content #}
+        <div class="post-content">
+            {{ content | safe }}
 
-        {% if tags %}
-        <div class="post-tags">
-            {% for tag in tags %}
-                {% if tag != "posts" %}
-                <a href="/tags/{{ tag }}" class="tag">#{{ tag }}</a>
-                {% endif %}
-            {% endfor %}
+            {% if bibliography %}
+            <section class="post-bibliography">
+                <h2>References</h2>
+                {% include "bibliography.njk" %}
+            </section>
+            {% endif %}
+
+            {% if changelog %}
+            <section class="post-changelog">
+                <h2>Changelog</h2>
+                {{ changelog | markdown | safe }}
+            </section>
+            {% endif %}
         </div>
-        {% endif %}
     </div>
 
-    {% if toc %}
-    <nav class="post-toc" aria-label="Table of Contents">
-        <h2>Contents</h2>
-        {{ content | toc | safe }}
-    </nav>
-    {% endif %}
-
-    <div class="post-content">
-        {{ content | safe }}
-    </div>
-
-    {% if bibliography %}
-    <div class="post-bibliography">
-        <h2>References</h2>
-        {% include "bibliography.njk" %}
-    </div>
-    {% endif %}
-
+    {# Post Navigation #}
     <footer class="post-navigation">
-        <nav class="cluster" style="--cluster-gap: var(--space-l)">
+        <nav class="post-nav-container">
             {%- set previousPost = collections.posts | getPreviousCollectionItem %}
             {%- set nextPost = collections.posts | getNextCollectionItem %}
 
-            {% if previousPost %}
-                <a href="{{ previousPost.url }}" rel="prev" class="post-nav-link">
-                    <span class="weight-medium">←</span>
-                    <span>{{ previousPost.data.title }}</span>
-                </a>
-            {% endif %}
+            <div class="post-nav-cell">
+                {% if previousPost %}
+                    <a href="{{ previousPost.url }}" rel="prev" class="post-nav-previous">
+                        <div class="post-nav-content">
+                            <div class="post-nav-link">
+                                <span class="post-nav-arrow">←</span>
+                                <span class="post-nav-title">{{ previousPost.data.title }}</span>
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
 
-            {% if nextPost %}
-                <a href="{{ nextPost.url }}" rel="next" class="post-nav-link text-right">
-                    <span>{{ nextPost.data.title }}</span>
-                    <span class="weight-medium">→</span>
-                </a>
-            {% endif %}
+            <div class="post-nav-cell">
+                {% if nextPost %}
+                    <a href="{{ nextPost.url }}" rel="next" class="post-nav-next">
+                        <div class="post-nav-content">
+                            <div class="post-nav-link">
+                                <span class="post-nav-title">{{ nextPost.data.title }}</span>
+                                <span class="post-nav-arrow">→</span>
+                            </div>
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
         </nav>
     </footer>
 </article> 

@@ -1,0 +1,47 @@
+---
+layout: base.njk
+pagination:
+  data: collections.tagList
+  size: 1
+  alias: tag
+permalink: /tags/{{ tag | slugify }}/
+eleventyComputed:
+  title: Posts tagged "{{ tag }}"
+  description: All posts and notes tagged with "{{ tag }}"
+---
+
+<div class="container flow" style="--flow-space: var(--space-2xl)">
+  <header class="blog-hero center flow" style="--flow-space: var(--space-s)">
+    <h1 class="text-balance">{{ title }}</h1>
+    <p class="text-balance text-muted" style="max-width: 50ch">{{ description }}</p>
+  </header>
+
+  <div class="blog-list">
+    {% set taglist = collections[tag] %}
+    {% for post in taglist | reverse %}
+      <article class="blog-item grid grid--2-col outlined-container">
+        <div class="blog-meta">
+          <time datetime="{{ post.date | htmlDateString }}" class="blog-date">
+            {{ post.date | readableDate }}
+          </time>
+          {% if post.data.tags %}
+            <div class="tags">
+              {% for tag in post.data.tags | filterTagList %}
+                {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+                <a href="{{ tagUrl }}" class="tag">{{ tag }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+        <div class="blog-content">
+          <h2>
+            <a href="{{ post.url }}">{{ post.data.title }}</a>
+          </h2>
+          {% if post.data.description %}
+            <p class="text-muted">{{ post.data.description }}</p>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</div> 

@@ -2,10 +2,22 @@
 title: "Machine Learning Explainability: A Visual Guide"
 description: "A comprehensive exploration of machine learning interpretability techniques, featuring interactive visualizations and in-depth analysis."
 date: 2024-02-04
+lastUpdated: 2024-03-21
+authors:
+  - name: Tanuj Ravi Rao
+    url: https://tansanrao.com
+  # Generate 4 test authors
+  - name: Author 1
+  - name: Author 2
+  - name: Author 3
+  - name: Author 4
 tags: [machine-learning, visualization, tutorial, deep-learning]
 bibliography: references.bib
 toc: true
 layout: post.njk
+changelog: |
+  - **March 21, 2024**: Added SHAP values section, improved mathematical notation
+  - **February 4, 2024**: Initial publication with feature importance and LIME explanations
 ---
 
 As machine learning models become increasingly complex, the need for interpretability grows proportionally[^1]. This post explores various techniques for making black-box models more transparent and interpretable.

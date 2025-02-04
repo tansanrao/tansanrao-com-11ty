@@ -1,0 +1,99 @@
+.tags-list {
+  display: grid;
+  gap: var(--space-l);
+}
+
+.tag-item {
+  padding: var(--space-m);
+  gap: var(--space-m);
+
+  @media (min-width: 768px) {
+    grid-template-columns: 200px 1fr;
+  }
+
+  .tag-name {
+    h2 {
+      margin: 0;
+      font-size: var(--size-step-1);
+    }
+  }
+
+  .tag-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+
+    p {
+      margin: 0;
+      color: var(--color-text-muted);
+    }
+  }
+}
+
+// Individual tag styling
+.tag {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-s);
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    color: var(--color-primary);
+    background: var(--color-surface-2);
+  }
+}
+
+// Container for multiple tags
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-xs);
+}
+
+// Tags in post meta
+.post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-s);
+}
+
+// Tags cloud layout
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  padding: var(--space-l);
+  justify-content: center;
+}
+
+.tag--cloud {
+  font-size: var(--size-step-0);
+  padding: var(--space-s) var(--space-m);
+  background: var(--color-surface);
+  border: 1px solid var(--color-background-grid);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-s);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    background: var(--color-surface-2);
+    border-color: var(--color-primary);
+  }
+
+  .tag__count {
+    background: var(--color-surface-2);
+    padding: 0.2em 0.6em;
+    border-radius: var(--radius);
+    font-size: 0.85em;
+    font-weight: 500;
+    color: var(--color-text-muted);
+  }
+} 

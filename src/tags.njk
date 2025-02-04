@@ -1,0 +1,26 @@
+---
+layout: base.njk
+title: Tags
+description: Browse content by topic.
+---
+
+<div class="container flow" style="--flow-space: var(--space-2xl)">
+  <header class="blog-hero center flow" style="--flow-space: var(--space-s)">
+    <h1 class="text-balance">{{ title }}</h1>
+    <p class="text-balance text-muted" style="max-width: 50ch">{{ description }}</p>
+  </header>
+
+  {% set allTags = collections.tagList %}
+  
+  <div class="outlined-container">
+    <div class="tags-cloud">
+      {% for tag in allTags | sort %}
+        {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+        <a href="{{ tagUrl }}" class="tag tag--cloud">
+          <span class="tag__name">{{ tag }}</span>
+          <span class="tag__count">{{ collections[tag].length }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div> 

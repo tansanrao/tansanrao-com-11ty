@@ -155,16 +155,5 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-s);
-    
-    .tag {
-      font-size: var(--font-size-0);
-      color: var(--text-2);
-      text-decoration: none;
-      transition: color 0.2s ease;
-      
-      &:hover {
-        color: var(--text-1);
-      }
-    }
   }
 } 
