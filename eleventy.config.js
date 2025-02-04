@@ -11,6 +11,69 @@ const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
 
 module.exports = function(eleventyConfig) {
   /**
+   * Markdown Configuration
+   * -------------------
+   * Setup for markdown processing with anchor links and footnotes
+   */
+  const markdownLibrary = markdownIt({
+    html: true,
+    breaks: false,
+    linkify: true
+  })
+  .use(markdownItAnchor, {
+    slugify: (s) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
+    permalink: {
+      symbol: "#",
+      placement: "before",
+      class: "direct-link"
+    }
+  })
+  .use(markdownItFootnote);
+
+  // Set as the default markdown library
+  eleventyConfig.setLibrary("md", markdownLibrary);
+
+  // Add markdown filter using the same library
+  eleventyConfig.addFilter("markdown", function(content) {
+    return markdownLibrary.render(content);
+  });
+
+  // Set server options
+  eleventyConfig.setServerOptions({
+		liveReload: true,
+
+		// Whether DOM diffing updates are applied where possible instead of page reloads
+		domDiff: true,
+
+		// Will increment up to (configurable) 10 times if a port is already in use.
+		port: 8080,
+
+		// Show local network IP addresses for device testing
+		showAllHosts: true,
+
+		// Use a local key/certificate to opt-in to local HTTP/2 with https
+		https: {
+			// key: "./localhost.key",
+			// cert: "./localhost.cert",
+		},
+
+		// Change the default file encoding for reading/serving files
+		encoding: "utf-8",
+
+		// Show the dev server version number on the command line
+		showVersion: false,
+
+		// Added in Dev Server 2.0+
+		// The default file name to show when a directory is requested.
+		indexFileName: "index.html",
+
+		// Added in Dev Server 2.0+
+		// An object mapping a URLPattern pathname to a callback function
+		// for on-request processing (read more below).
+		onRequest: {},
+  });
+
+  /**
    * Plugin Configuration
    * ------------------
    * Core plugins for syntax highlighting, navigation, and RSS feeds
@@ -206,23 +269,6 @@ module.exports = function(eleventyConfig) {
     return array.slice(0, limit);
   });
 
-  // Add markdown filter for rendering markdown content in templates
-  const md = new markdownIt({
-    html: true,
-    breaks: true,
-    linkify: true
-  })
-  .use(markdownItAnchor, {
-    permalink: true,
-    permalinkClass: 'direct-link',
-    permalinkSymbol: '#'
-  })
-  .use(markdownItFootnote);
-
-  eleventyConfig.addFilter("markdown", function(content) {
-    return md.render(content);
-  });
-
   /**
    * SCSS Processing Configuration
    * --------------------------
@@ -289,28 +335,6 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/favicon": "/" });
   eleventyConfig.addPassthroughCopy({ "node_modules/@fontsource": "scss/@fontsource" });
   eleventyConfig.addPassthroughCopy({ "node_modules/@fortawesome": "scss/@fortawesome" });
-
-  /**
-   * Markdown Configuration
-   * -------------------
-   * Setup for markdown processing with anchor links and footnotes
-   */
-  const markdownLibrary = markdownIt({
-    html: true,
-    breaks: true,
-    linkify: true
-  })
-  .use(markdownItAnchor, {
-    slugify: (s) => s.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''),
-    permalink: {
-      symbol: "#",
-      placement: "before",
-      class: "direct-link"
-    }
-  })
-  .use(markdownItFootnote);
-
-  eleventyConfig.setLibrary("md", markdownLibrary);
 
   /**
    * Eleventy Configuration
