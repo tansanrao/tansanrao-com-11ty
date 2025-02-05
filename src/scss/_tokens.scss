@@ -38,6 +38,11 @@ $tokens: (
   --color-link: #0891b2;  // Cyan 600
   --color-link-hover: #0e7490;  // Cyan 700
   
+  // Warning colors
+  --color-warning-bg: #fff7ed;
+  --color-warning-border: #fdba74;
+  --color-warning-text: #c2410c;
+  
   // Background pattern colors
   --color-background-primary: #f8f7f4;
   --color-background-secondary: #f5f4f1;
@@ -70,6 +75,12 @@ $tokens: (
     --color-surface-2: rgba(255, 255, 255, 0.03);
     --color-link: #22d3ee;  // Cyan 400
     --color-link-hover: #06b6d4;  // Cyan 500
+    
+    // Warning colors for dark mode
+    --color-warning-bg: #451a03;
+    --color-warning-border: #c2410c;
+    --color-warning-text: #fdba74;
+
     --color-background-primary: #1a1f2e;
     --color-background-secondary: #151923;
     --color-background-grid: rgba(96, 165, 250, 0.15);

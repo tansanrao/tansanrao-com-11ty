@@ -2,6 +2,7 @@
 title: "New Beginnings: A Fresh Perspective"
 description: After years away, I'm starting fresh with this blog, shifting my focus from perfection and productivity to personal growth, exploration, and enjoying the process of writing.
 date: 2025-01-09
+toc: false
 tags: [writing, personal-growth]
 layout: post.njk
 ---

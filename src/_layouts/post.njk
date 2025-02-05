@@ -53,6 +53,15 @@ layout: base.njk
     <div class="post-layout">
         {# Left Column - Asides #}
         <aside class="post-asides">
+            {% set postDateTime = page.date | luxonDateTime %}
+            {% set currentDateTime = currentDate | luxonDateTime %}
+            {% set diffInMonths = currentDateTime | monthDiff(postDateTime) %}
+            {% if diffInMonths >= 24 %}
+            <div class="post-age-warning">
+                <p>⚠️ This post is over two years old. While the core concepts may still be valuable, some technical details might be outdated.</p>
+            </div>
+            {% endif %}
+
             {% if toc %}
             <nav class="post-toc" aria-label="Table of Contents">
                 <h2>Table of Contents</h2>

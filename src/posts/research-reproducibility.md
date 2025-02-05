@@ -3,6 +3,8 @@ title: "The Quest for Reproducible Research"
 description: Exploring the challenges and importance of making research reproducible, and how we can work towards a more open and verifiable scientific future.
 date: 2025-01-22
 tags: [research, science, reproducibility]
+draft: true
+toc: false
 layout: post.njk
 ---
 

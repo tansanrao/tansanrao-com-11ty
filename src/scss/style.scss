@@ -23,6 +23,7 @@
 @use 'components/typography';
 @use 'components/links';
 @use 'components/code';
+@use 'components/prism';
 @use 'components/blog';
 @use 'components/post';
 @use 'components/footer';
@@ -87,4 +88,15 @@ body {
   background-repeat: repeat, no-repeat, repeat, repeat;
   -webkit-background-blend-mode: soft-light, normal, normal, normal;
   background-blend-mode: soft-light, normal, normal, normal;
+}
+
+.draft-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.25rem;
+  text-align: center;
+  font-weight: bold;
 }

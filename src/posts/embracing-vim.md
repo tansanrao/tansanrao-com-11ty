@@ -3,6 +3,7 @@ title: "Embracing Vim: Beyond the Learning Curve"
 description: My journey into Vim has been transformative, teaching me that sometimes the harder path leads to the most rewarding destinations in our development journey.
 date: 2025-01-15
 tags: [tools, productivity, vim]
+draft: true
 layout: post.njk
 ---
 

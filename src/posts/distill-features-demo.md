@@ -1,7 +1,7 @@
 ---
-title: "Machine Learning Explainability: A Visual Guide"
+title: "NEW distill.pub based template test post"
 description: "A comprehensive exploration of machine learning interpretability techniques, featuring interactive visualizations and in-depth analysis."
-date: 2024-02-04
+date: 1970-01-01
 lastUpdated: 2024-03-21
 authors:
   - name: Tanuj Ravi Rao

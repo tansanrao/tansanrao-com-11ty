@@ -40,6 +40,29 @@ module.exports = function(eleventyConfig) {
     return markdownLibrary.render(content);
   });
 
+  // Add offsetDate filter for date calculations
+  eleventyConfig.addFilter("offsetDate", function(date, offset) {
+    return DateTime.fromJSDate(date).plus({ days: offset }).toJSDate();
+  });
+
+  /**
+   * Drafts Configuration
+   * ------------------
+   * Implements a drafts workflow where content marked as draft will only
+   * be built in development mode (--serve or --watch)
+   */
+  eleventyConfig.addPreprocessor("drafts", ["md", "njk"], (data, content) => {
+    if (data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
+      // Exclude drafts from production builds
+      return false;
+    }
+    
+    // Add a visual indicator for drafts in development
+    if (data.draft) {
+      return `<div class="draft-warning">⚠️ This is a draft post</div>\n${content}`;
+    }
+  });
+
   // Set server options
   eleventyConfig.setServerOptions({
 		liveReload: true,
@@ -252,6 +275,21 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd");
   });
 
+  // Add Luxon date comparison filters
+  eleventyConfig.addFilter("luxonDateTime", (dateObj) => {
+    return DateTime.fromJSDate(dateObj);
+  });
+
+  eleventyConfig.addFilter("monthDiff", (current, previous) => {
+    return current.diff(previous, 'months').months;
+  });
+
+  // Add toDate filter for date conversions
+  eleventyConfig.addFilter("toDate", (dateObj) => {
+    if (dateObj instanceof Date) return dateObj;
+    return new Date(dateObj);
+  });
+
   /**
    * Utility Filters and Shortcodes
    * ---------------------------
@@ -338,6 +376,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "node_modules/@fontsource": "scss/@fontsource" });
   eleventyConfig.addPassthroughCopy({ "node_modules/@fortawesome": "scss/@fortawesome" });
   eleventyConfig.addPassthroughCopy({ "node_modules/katex/dist/fonts": "assets/fonts/katex" });
+
+  // Add global data object for current date
+  eleventyConfig.addGlobalData("currentDate", () => new Date());
 
   /**
    * Eleventy Configuration
