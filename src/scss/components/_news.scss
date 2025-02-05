@@ -40,6 +40,14 @@
     }
 
     .news-content {
+        h3 {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.4;
+            font-family: var(--font-heading);
+            margin-bottom: var(--space-2xs);
+        }
+
         p {
             margin: 0;
             color: var(--color-text);

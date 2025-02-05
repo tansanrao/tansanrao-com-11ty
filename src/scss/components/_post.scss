@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 100%;
   overflow: hidden;
-  font-family: var(--font-serif);
+  font-family: var(--font-base);
   font-size: 1.125rem;
   line-height: 1.7;
   color: var(--color-text);
@@ -232,7 +232,7 @@
 
   // Main Content
   &-content {
-    font-family: var(--font-serif);
+    font-family: var(--font-base);
     font-size: 1.125rem;
     line-height: 1.7;
     width: 100%;
