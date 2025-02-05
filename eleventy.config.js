@@ -222,7 +222,7 @@ module.exports = function(eleventyConfig) {
   // Combined collection of all content
   eleventyConfig.addCollection("everything", function(collectionApi) {
     return [...collectionApi.getFilteredByGlob("src/posts/*.md"), 
-            ...collectionApi.getFilteredByGlob("src/notes/*.md")].sort((a, b) => b.date - a.date);
+            ...collectionApi.getFilteredByGlob("src/notes/*.md")].sort((a, b) => a.date - b.date);
   });
 
   // Blog posts collection
